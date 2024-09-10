@@ -19,12 +19,13 @@ export const register = async(req,res)=>{
 
     // Guardar usuario en la base de datos
     const userSaved = await newUser.save();
+    
 
     //Para el token 
     const   token  =  await createAccessToken({id:userSaved._id})
-    //Guardamos en una cookie
-  res.cookie('token',token)
- // Respuesta exitosa
+      //Guardamos en una cookie
+    res.cookie('token',token)
+    // Respuesta exitosa
     return res.status(201).json({
       id: userSaved._id,
       username: userSaved.username,
