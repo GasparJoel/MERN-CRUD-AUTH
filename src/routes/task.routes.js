@@ -12,7 +12,4 @@ router.get('/task:id',authRequired,TaskController.getTask)
 router.put('/task:id',authRequired,TaskController.updateTask)
 
 
-
-
-
 export default router
