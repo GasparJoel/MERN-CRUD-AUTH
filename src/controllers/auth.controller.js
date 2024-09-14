@@ -5,25 +5,20 @@ import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async(req,res)=>{
     const {email,password,username} = req.body
-
    try {
-    // Hash de la contraseña
+    // Hash incriptación  de la contraseña
     const passwordHash = await bcrypt.hash(password, 10);
-
     // Creación del nuevo usuario
     const newUser = new User({
       username,
       email,
       password: passwordHash,
     });
-
     // Guardar usuario en la base de datos
     const userSaved = await newUser.save();
-    
-
     //Para el token 
     const   token  =  await createAccessToken({id:userSaved._id})
-      //Guardamos en una cookie
+    //Guardamos en una cookie
     res.cookie('token',token)
     // Respuesta exitosa
     return res.status(201).json({
@@ -34,7 +29,7 @@ export const register = async(req,res)=>{
       updatedAt:userSaved.updatedAt,
     });
    } catch (error) {
-   res.status(500).json({message :error.message})
+   res.status(500).json({messagegit  :error.message})
    }
    
 }
@@ -42,21 +37,15 @@ export const register = async(req,res)=>{
 export const login = async(req,res)=>{
   const {email,password} = req.body
 
-
  try {
-//buscar al usuario 
+  //buscar al usuario 
  const UserFound = await User.findOne({email})
-
- //Sien caso no se econtro
+  //No encontrado
  if(!UserFound) return res.status(400).json({message:"Usern not found"})
-
   // Comparamos con el usuario encontrado 
   const isMatch = await bcrypt.compare(password, UserFound.password);
-
-
-  //Si no coincidieron  el password 
+  //Si no coincide  el password 
   if (!isMatch) return res.status(400).json({message:"Incorrect password"})
-
 
   //Para el token 
   const   token  =  await createAccessToken({id:UserFound._id})
@@ -82,13 +71,10 @@ export const logout = async(req,res)=>{
   })
   return res.status(200).send('Logout successfull')
 }
+
 export const profile = async(req,res)=>{
-
-
   try {
-
     const userFound = await User.findById(req.user.id)
-
     if(!userFound) return res.status(400).json({message:"User not found"})
     
       return res.json({
@@ -98,13 +84,9 @@ export const profile = async(req,res)=>{
         createdAt:userFound.createdAt,
         updatedAt:userFound.updatedAt
       })
-
   } catch (error) {
     
   }
- 
-
-  
   res.send('profile')
   
 }

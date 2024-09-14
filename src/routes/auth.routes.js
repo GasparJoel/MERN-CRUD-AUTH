@@ -4,6 +4,7 @@ import { authRequired } from "../middlewares/ValidateToken.js";
 
 const router = Router()
 
+//Rutas 
 router.post('/register',authController.register)
 router.post('/login',authController.login)
 router.post('/logout',authController.logout)
