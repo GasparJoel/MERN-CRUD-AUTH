@@ -1,15 +1,18 @@
 import Task  from "../models/task.model.js";
 
 export const getTasks = async(req,res) =>{
-    const tasks = await Task.find()
+    //Traemos las tareas que pertenecen al usuario
+    const tasks = await Task.find({
+        user:req.user.id
+    })
     res.json(tasks)
 }
 export const createTask = async(req,res) =>{
     const {title ,descripcion} = req.body
     const newTask = new Task({
         title,
-        descripcion
-        
+        descripcion,
+        user:req.user.id
     })
     const TaskSave = await newTask.save()
     res.json(TaskSave)
