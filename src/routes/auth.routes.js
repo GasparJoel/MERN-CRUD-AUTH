@@ -3,6 +3,7 @@ import * as authController from "../controllers/auth.controller.js";
 import { authRequired } from "../middlewares/ValidateToken.js";
 import { validateSchema } from "../middlewares/Validator.middleware.js";
 import { registerSchema, loginSchema } from "../schemas/auth.schema.js";
+
 const router = Router()
 
 //Rutas 
