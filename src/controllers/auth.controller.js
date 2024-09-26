@@ -9,7 +9,7 @@ export const register = async(req,res)=>{
 
    //VALIDACION DEL USUARIO
    const userFound = await User.findOne({email})
-   if (userFound) return res.status(400).json({message:['the email is already is use']})
+   if (userFound) return res.status(400).json(['the email is already is use'])
 
     // Hash incriptación  de la contraseña
     const passwordHash = await bcrypt.hash(password, 10);

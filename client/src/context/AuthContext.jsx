@@ -15,7 +15,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState([]);
   const [isAuthenticate, setisAuthenticate] = useState(false)
 
   // Función de registro de usuario
@@ -26,7 +26,9 @@ export const AuthProvider = ({ children }) => {
       setError(null); // Limpiar error si la solicitud es exitosa
       setisAuthenticate(true)
     } catch (err) {
-      setError(err.response?.data?.message || "Error during signup"); // Manejo de errores
+      console.log(err.response)
+      setError(err.response.data); // Manejo de errores
+      
     }
   };
 

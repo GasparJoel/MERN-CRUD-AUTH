@@ -8,7 +8,7 @@ export const RegistPage = () => {
   const navigate = useNavigate()
 
   const {register, handleSubmit,formState:{errors}} = useForm()
-  const { signup , isAuthenticate} = useAuth() 
+  const { signup , isAuthenticate,error:errores} = useAuth() 
   
   console.log(isAuthenticate)
 
@@ -25,6 +25,15 @@ export const RegistPage = () => {
 
   return (
     <div className="bg-zinc-800 max-w-md p-10 rounded-md">
+      {/* Verificar si registerErrors es un array antes de mapear */}
+      {errores?.length > 0 && (
+        errores.map((error, i) => (
+          <div key={i} className="bg-red-500 p-2 text-white my-2 rounded-md">
+            {error}
+          </div>
+        ))
+      )}
+
 
       <form onSubmit={ onSubmit}> 
         <input type="text" {...register("username",{required:true})}
