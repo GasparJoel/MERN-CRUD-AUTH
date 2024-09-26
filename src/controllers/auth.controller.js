@@ -6,6 +6,11 @@ import { createAccessToken } from "../libs/jwt.js";
 export const register = async(req,res)=>{
     const {email,password,username} = req.body
    try {
+
+   //VALIDACION DEL USUARIO
+   const userFound = await User.findOne({email})
+   if (userFound) return res.status(400).json({message:['the email is already is use']})
+
     // Hash incriptación  de la contraseña
     const passwordHash = await bcrypt.hash(password, 10);
     // Creación del nuevo usuario
