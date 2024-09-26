@@ -3,22 +3,29 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegistPage } from "./pages/RegistPage";
 import { AuthProvider } from "./context/AuthContext";
 
+import { ProfilePage } from "./pages/ProfilePage";
+import { ProductProvider } from "./context/ProductoContext";
+
 
 
 export const App = () => {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={ <RegistPage/> } />  
-        <Route path="/tasks" element={<h1>Tasks Page</h1>} />
-        <Route path="/add-task" element={<h1>New Task</h1>} />
-        <Route path="/tasks/:id" element={<h1>Update Task</h1>} />
-        <Route path="/profile" element={<h1>Profile</h1>} />
-      </Routes>
-    </BrowserRouter>
-    </AuthProvider>
+
+      <AuthProvider>
+        <ProductProvider>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<h1>Home Page</h1>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={ <RegistPage/> } />  
+          <Route path="/tasks" element={<h1>Tasks Page</h1>} />
+          <Route path="/add-task" element={<h1>New Task</h1>} />
+          <Route path="/tasks/:id" element={<h1>Update Task</h1>} />
+          <Route path="/profile" element={<ProfilePage/>} />
+        </Routes>
+      </BrowserRouter>
+      </ProductProvider>
+      </AuthProvider>
+  
   );
 };
