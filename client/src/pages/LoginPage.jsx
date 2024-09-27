@@ -2,13 +2,14 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 export const LoginPage = () => {
 
-   const { signin} =useAuth() 
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const { signin ,error:signinErrors } =useAuth() 
   const onSubmit = handleSubmit(async (values) => {
     signin(values)
     console.log(values);
@@ -17,6 +18,16 @@ export const LoginPage = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-zinc-900 ">
       <div className="bg-zinc-800 p-10 w-full  rounded-md max-w-md ">
+
+    {/* Verificar si registerErrors es un array antes de mapear */}
+    {signinErrors?.length > 0 && (
+            signinErrors.map((error, i) => (
+              <div key={i} className="bg-red-500 p-2 text-white my-2 rounded-md text-center">
+                {error}
+              </div>
+            ))
+          )}
+
         <h1 className="text-2xl font-bold">Login</h1>
         <form onSubmit={onSubmit}>
           <input
