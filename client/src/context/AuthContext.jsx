@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { registerRequest } from "../api/auth";
+import { registerRequest ,loginRequest } from "../api/auth";
 
 // Crear el contexto de autenticación
 export const AuthContext = createContext();
@@ -32,10 +32,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  //PARA INICIAR SESION al usuario
+  const signin = async (userData) => {
+   
+    try {
+      const res = await loginRequest(userData)
+      console.log(res)
+
+    } catch (error) {
+      setError(error.response.data)
+    }
+  };
+
   return (
     <AuthContext.Provider 
       value={{
         signup,
+        signin,
         user,
         isAuthenticate,
         error,  // Proporcionar error al contexto
