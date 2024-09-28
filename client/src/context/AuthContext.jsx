@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { registerRequest ,loginRequest } from "../api/auth";
+import errorMap from "zod/locales/en.js";
 
 // Crear el contexto de autenticación
 export const AuthContext = createContext();
@@ -40,9 +41,25 @@ export const AuthProvider = ({ children }) => {
       console.log(res)
 
     } catch (error) {
-      setError(error.response.data)
+      if (Array.isArray(error.response.data)) {
+       return setError(error.response.data)
+      }
+      setError([error.response.data.message])
+     
     }
   };
+
+  //Para colocar tiempo en que se muestra los errores 
+  useEffect(() => {
+
+  if (error.length > 0) {
+    const timer =  setTimeout(() => {
+      setError([])
+    }, 5000);
+    return()=>clearTimeout(timer)
+  }
+  }, [error])
+  
 
   return (
     <AuthContext.Provider 

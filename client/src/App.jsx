@@ -2,9 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
 import { RegistPage } from "./pages/RegistPage";
 import { AuthProvider } from "./context/AuthContext";
-
 import { ProfilePage } from "./pages/ProfilePage";
-import { ProductProvider } from "./context/ProductoContext";
+  
 
 
 
@@ -12,7 +11,7 @@ export const App = () => {
   return (
 
       <AuthProvider>
-        <ProductProvider>
+       
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<h1>Home Page</h1>} />
@@ -24,7 +23,7 @@ export const App = () => {
           <Route path="/profile" element={<ProfilePage/>} />
         </Routes>
       </BrowserRouter>
-      </ProductProvider>
+     
       </AuthProvider>
   
   );
