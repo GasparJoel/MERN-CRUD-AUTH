@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
       //Pasar todo falso tanto la autentication , user,loading 
       setisAuthenticate(false)
       setloading(false)
-      setUser(null)
+     return  setUser(null)
     }
     //Si en caso hay un token
      try {
