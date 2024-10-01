@@ -9,7 +9,12 @@ export const TasksPage = () => {
       getTasks()
     }, [])
     
-
+//Si en caso no hay tareas 
+if (tasks.length === 0) {
+  return ( 
+    <h1> No tasks</h1>
+  )
+}
   return  <div>
       {
         tasks.map(task=>(
