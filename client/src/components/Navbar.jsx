@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export const Navbar = () => {
-  const { isAuthenticate } = useAuth();
+  const { isAuthenticate,logout } = useAuth();
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
@@ -20,7 +20,9 @@ export const Navbar = () => {
               <Link to={"/add-task"}>Add Task</Link>
             </li>
             <li>
-              <Link to={"/add-task"}>Logout</Link>
+              <Link to={"/"} onClick={()=>{
+                logout()
+              }}>Logout</Link>
             </li>
           </>
         ) : (

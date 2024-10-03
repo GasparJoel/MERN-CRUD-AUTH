@@ -53,6 +53,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  //Para Cerrar Sesion al usuario 
+  const logout = async (userData)=>{
+    Cookies.remove('token');
+    setisAuthenticate(false)
+    setUser(null);
+  }
+
   //Para colocar tiempo en que se muestra los errores 
   useEffect(() => {
 
@@ -106,6 +113,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         signup,
         signin,
+        logout,
         loading,
         user,
         isAuthenticate,
