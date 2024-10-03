@@ -19,6 +19,7 @@ export const App = () => {
        
        <TaskProvaider>
         <BrowserRouter>
+        <main className="container mx-auto px-10">
         <Navbar/>
           <Routes>
             <Route path="/" element={<HomePage/>} />
@@ -32,6 +33,7 @@ export const App = () => {
                   <Route path="/profile" element={<ProfilePage/>} />
             </Route>
           </Routes>
+        </main>
         </BrowserRouter>
        </TaskProvaider>
      
