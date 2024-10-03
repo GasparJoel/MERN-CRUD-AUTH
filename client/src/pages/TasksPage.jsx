@@ -1,6 +1,7 @@
 
 import { useEffect } from "react"
 import { useTask } from "../context/TaskContext"
+import { TaskCard } from "../components/TaskCard"
 
 export const TasksPage = () => {
     
@@ -16,13 +17,11 @@ export const TasksPage = () => {
       <h1> No tasks</h1>
     )
   }
+  
   return  <div>
       {
-        tasks.map(task=>(
-          <div key={task._id}>
-            <h1 className="font-bold text-2xl">{task.title}</h1>
-            <p>{task.descripcion}</p>
-          </div>
+        tasks.map((task)=>(
+         <TaskCard key={task._id} task={task}/>
         ))
       }
     </div>

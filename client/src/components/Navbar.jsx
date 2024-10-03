@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export const Navbar = () => {
-  const { isAuthenticate,logout } = useAuth();
+  const { isAuthenticate,logout ,user} = useAuth();
 
+  console.log(user)
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
       <Link to={"/"}>
@@ -14,10 +15,12 @@ export const Navbar = () => {
         {isAuthenticate ? (
           <>
             <li>
-              <Link>Welcome user</Link>
+              <Link>Welcome {user.username}</Link>
             </li>
             <li>
-              <Link to={"/add-task"}>Add Task</Link>
+              <Link to={"/add-task"}
+              className="bg-indigo-500 py-1 px-4 rounded-sm"
+              >Add Task</Link>
             </li>
             <li>
               <Link to={"/"} onClick={()=>{
@@ -28,10 +31,10 @@ export const Navbar = () => {
         ) : (
           <>
             <li>
-              <Link to={"/login"}>Login</Link>
+              <Link to={"/login"} className="bg-indigo-500 py-1 px-4 rounded-sm">Login</Link>
             </li>
             <li>
-              <Link to={"/register"}>Register</Link>
+              <Link to={"/register"} className="bg-indigo-500 py-1 px-4 rounded-sm">Register</Link>
             </li>
           </>
         )}

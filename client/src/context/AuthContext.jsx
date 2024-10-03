@@ -62,14 +62,14 @@ export const AuthProvider = ({ children }) => {
 
   //Para colocar tiempo en que se muestra los errores 
   useEffect(() => {
-
-  if (error.length > 0) {
-    const timer =  setTimeout(() => {
-      setError([])
-    }, 5000);
-    return()=>clearTimeout(timer)
-  }
-  }, [error])
+    if (error && error.length > 0) {
+      const timer = setTimeout(() => {
+        setError([]);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
   
   //Para poder obtener las cookies y hacer las validaciones de las paginas 
   useEffect(() => {
