@@ -8,6 +8,7 @@ import { TaskFormPage } from "./pages/TaskFormPage";
 import { HomePage } from "./pages/HomePage";
 import {ProtectedRoute} from "./ProtectedRoute";  
 import { TaskProvaider } from "./context/TaskContext";
+import { Navbar } from "./components/Navbar";
 
 
 
@@ -18,6 +19,7 @@ export const App = () => {
        
        <TaskProvaider>
         <BrowserRouter>
+        <Navbar/>
           <Routes>
             <Route path="/" element={<HomePage/>} />
             <Route path="/login" element={<LoginPage />} />
@@ -25,7 +27,7 @@ export const App = () => {
 
             <Route element={<ProtectedRoute/>}>
                 <Route path="/tasks" element={<TasksPage/>} />
-                  <Route path="/tasks/new" element={<TaskFormPage/>} />
+                  <Route path="/add-task" element={<TaskFormPage/>} />
                   <Route path="/tasks/:id" element={<TaskFormPage/>} />
                   <Route path="/profile" element={<ProfilePage/>} />
             </Route>
