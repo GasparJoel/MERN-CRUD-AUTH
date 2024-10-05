@@ -18,6 +18,11 @@ export const Navbar = () => {
               <Link>Welcome {user.username}</Link>
             </li>
             <li>
+              <Link to={'/tasks'}>
+              Tasks
+               </Link>
+            </li>
+            <li>
               <Link to={"/add-task"}
               className="bg-indigo-500 py-1 px-4 rounded-sm"
               >Add Task</Link>
